@@ -28,6 +28,7 @@ public class MainPage {
     private By sectionSauce = By.xpath(".//span[text()='Соусы']");
     // раздел Начинки
     private By sectionTopping = By.xpath(".//span[text()='Начинки']");
+    private By currentSectionLocator = By.xpath(".//div[contains(@class, 'current')]/span");
 
     public MainPage(WebDriver driver){
         this.driver = driver;
@@ -37,7 +38,7 @@ public class MainPage {
         return driver.findElement(loginButton);
     }
     // Нажатие на кнопку Войти в аккаунт
-    @Step
+    @Step("Нажатие на кнопку Войти в аккаунт")
     public void loginButtonClick () {
         new WebDriverWait(driver, Duration.ofSeconds(20))
                 .until(ExpectedConditions.visibilityOfElementLocated(loginButton));
@@ -46,7 +47,7 @@ public class MainPage {
 
 
     // Нажатие на кнопку Личный кабинет
-    @Step
+    @Step("Нажатие на кнопку Личный кабинет")
     public void profileButtonClick () {
         new WebDriverWait(driver, Duration.ofSeconds(20))
                 .until(ExpectedConditions.visibilityOfElementLocated(profileButton));
@@ -54,7 +55,7 @@ public class MainPage {
     }
 
     // Нажатие на раздел Булки
-    @Step
+    @Step("Нажатие на раздел Булки")
     public void sectionBunClick () {
         new WebDriverWait(driver, Duration.ofSeconds(20))
                 .until(ExpectedConditions.visibilityOfElementLocated(sectionBun));
@@ -62,7 +63,7 @@ public class MainPage {
     }
 
     // Нажатие на раздел Соусы
-    @Step
+    @Step("Нажатие на раздел Соусы")
     public void sectionSauceClick () {
         new WebDriverWait(driver, Duration.ofSeconds(20))
                 .until(ExpectedConditions.visibilityOfElementLocated(sectionSauce));
@@ -70,14 +71,14 @@ public class MainPage {
     }
 
     // Нажатие на раздел Начинки
-    @Step
+    @Step("Нажатие на раздел Начинки")
     public void sectionToppingClick () {
         new WebDriverWait(driver, Duration.ofSeconds(20))
                 .until(ExpectedConditions.visibilityOfElementLocated(sectionTopping));
         driver.findElement(sectionTopping).click();
     }
     // Проверка отображения кнопки Оформить заказ
-    @Step
+    @Step("Проверка отображения кнопки Оформить заказ")
     public boolean createOrderButtonIsDisplayed() {
         new WebDriverWait(driver, Duration.ofSeconds(20))
                 .until(ExpectedConditions.visibilityOfElementLocated(createOrderButton));
@@ -89,13 +90,13 @@ public class MainPage {
     }
 
     // Возвращает выбранный элемент в конструкторе
-    @Step
+    @Step("Возвращает выбранный элемент в конструкторе")
     public String returnSelectedSection(String sectionName) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-        wait.until(ExpectedConditions.textToBe(By.xpath(".//div[contains(@class, 'current')]/span"), sectionName));
-        return driver.findElement(By.xpath(".//div[contains(@class, 'current')]/span")).getText();
+        wait.until(ExpectedConditions.textToBe(currentSectionLocator, sectionName));
+        return driver.findElement(currentSectionLocator).getText();
     }
-    @Step
+    @Step("Открытие главной страницы")
     public void openPage(){
         driver.get(BASE_URL);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40));

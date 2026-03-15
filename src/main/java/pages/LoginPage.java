@@ -25,19 +25,19 @@ public class LoginPage {
         this.driver = driver;
     }
 
-    @Step
+    @Step("Заполнение поля email")
     public void setEmail(String userEmail){
         driver.findElement(emailField).sendKeys(userEmail);
     }
-    @Step
+    @Step("Заполнение поля Password")
     public void setPassword(String userPassword){
         driver.findElement(passwordField).sendKeys(userPassword);
     }
-    @Step
+    @Step("Нажатие на кнопку Войти")
     public void loginBtnClck(){
         driver.findElement(loginButton).click();
     }
-    @Step
+    @Step("Ожидание появления кнопки войти")
     public void waitBtnLoaded(){
         new WebDriverWait(driver, Duration.ofSeconds(20))
                 .until(ExpectedConditions.visibilityOfElementLocated(loginButton));

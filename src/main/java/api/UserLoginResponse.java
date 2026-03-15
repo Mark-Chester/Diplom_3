@@ -1,4 +1,4 @@
-package apiPages;
+package api;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,8 +9,10 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserCreationModel {
-    private String email;
-    private String password;
-    private String name;
+public class UserLoginResponse {
+    private boolean success;
+    private String accessToken;
+    private String refreshToken;
+    private UserModel user;
+
 }

@@ -1,8 +1,8 @@
 package steps;
 
-import apiPages.UserCreationModel;
-import apiPages.UserLoginBodyModel;
-import apiPages.UserLoginResponse;
+import api.UserCreationModel;
+import api.UserLoginBodyModel;
+import api.UserLoginResponse;
 import io.qameta.allure.Step;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;

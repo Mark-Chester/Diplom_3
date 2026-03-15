@@ -1,9 +1,7 @@
-import apiPages.UserCreationModel;
+import api.UserCreationModel;
 import io.qameta.allure.Description;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
 import pages.ForgottenPassword;
 import pages.MainPage;
 import pages.RegistrationPage;
@@ -15,19 +13,18 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertTrue;
 import static steps.ApiSteps.userCreationResponse;
 
-@RunWith(Parameterized.class)
+
 public class LoginTests extends BaseTest{
-    private final String browser;
-    public LoginTests(String browser){
-        super(browser);
-        this.browser = browser;
+    public LoginTests(){
+        super(getBrowserFromEnv());
     }
-    @Parameterized.Parameters(name = "Browser {0}")
-    public static Object[][] getBrowserTest(){
-        return new Object[][] {
-                {"chrome"},
-                {"yandex"}
-        };
+
+    private static String getBrowserFromEnv() {
+        String browser = System.getenv("BROWSER");
+        if (browser == null || browser.isEmpty()) {
+            throw new IllegalArgumentException("Переменная окружения BROWSER не установлена");
+        }
+        return browser;
     }
     @Before
     public void userCreation(){

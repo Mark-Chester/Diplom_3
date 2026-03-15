@@ -1,25 +1,22 @@
 import io.qameta.allure.Description;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
 import pages.MainPage;
 
 import static org.junit.Assert.assertEquals;
 
-@RunWith(Parameterized.class)
 public class ConstructorTests extends BaseTest{
-    private final String browser;
-    public ConstructorTests(String browser){
-        super(browser);
-        this.browser = browser;
-    }
-    @Parameterized.Parameters(name = "Browser {0}")
-    public static Object[][] getBrowserTest(){
-        return new Object[][] {
-                {"chrome"},
-                {"yandex"}
-        };
+public ConstructorTests() {
+    // Инициализация через переменную окружения
+    super(getBrowserFromEnv());
+}
+
+    private static String getBrowserFromEnv() {
+        String browser = System.getenv("BROWSER");
+        if (browser == null || browser.isEmpty()) {
+            throw new IllegalArgumentException("Переменная окружения BROWSER не установлена");
+        }
+        return browser;
     }
     @Before
     public void skipDeletions(){

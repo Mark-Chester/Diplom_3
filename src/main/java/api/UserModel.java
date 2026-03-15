@@ -1,4 +1,4 @@
-package apiPages;
+package api;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -34,41 +34,41 @@ private By name = By.xpath("(//label[text()='Имя']/following::input)");
         return driver.findElement(register);
     }
 
-@Step
+@Step("Заполнение поля Name")
 public void setName(String username){
     driver.findElement(name).sendKeys(username);
 }
-@Step
+@Step("Заполнение поля Email")
 public void setEmail(String useremail){
         driver.findElement(email).sendKeys(useremail);
     }
-@Step
+@Step("Заполнение поля Password")
     public void setPassword(String userpassword){
     driver.findElement(password).sendKeys(userpassword);
     }
-    @Step
+    @Step("Нажатие кнопки Зарегистрироваться")
     public void registerClick(){
         driver.findElement(register).click();
     }
-    @Step
+    @Step("Ожидание прогрузки кнопки Зарегистрироваться")
     public void waitRgstrLoaded(){
         new WebDriverWait(driver, Duration.ofSeconds(20))
                 .until(ExpectedConditions.visibilityOfElementLocated(register));
     }
 
-@Step
+@Step("Проверка видимости сообщения о неверном пароле")
 public boolean wrongPasswordTextIsVisuable(){
         new WebDriverWait(driver,Duration.ofSeconds(20))
                 .until(ExpectedConditions.visibilityOfElementLocated(errorMsg));
         try{return driver.findElement(errorMsg).isDisplayed();}catch (NoSuchElementException e){return false;}
 }
-@Step
+@Step("Нажатие на кнопку Войти")
 public void loginButtonClick(){
         new WebDriverWait(driver, Duration.ofSeconds(20))
                 .until(ExpectedConditions.visibilityOfElementLocated(enter));
         driver.findElement(enter).click();
 }
-@Step
+@Step("Открытие страницы регистрации")
     public void openPage(){
         driver.get(REGISTRATION_URL);
     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40));

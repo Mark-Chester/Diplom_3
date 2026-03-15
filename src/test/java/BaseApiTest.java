@@ -1,4 +1,4 @@
-import apiPages.UserLoginBodyModel;
+import api.UserLoginBodyModel;
 import io.restassured.RestAssured;
 import org.junit.After;
 import org.junit.BeforeClass;

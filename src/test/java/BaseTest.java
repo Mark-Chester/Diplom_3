@@ -1,10 +1,13 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
+import org.junit.Before;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import pages.LoginPage;
 import pages.MainPage;
 import pages.RegistrationPage;
+
+import java.io.InputStream;
+import java.util.Properties;
 
 public class BaseTest extends BaseApiTest{
         WebDriver driver;

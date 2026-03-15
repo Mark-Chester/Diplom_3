@@ -9,7 +9,7 @@ public class RegistrationSteps {
    public RegistrationSteps(WebDriver driver){
         this.driver = driver;
     }
-    @Step
+    @Step("Заполнение полей формы Регистрация и нажатие на кнопку Зарегистрировать")
     public void registration(String username, String useremail, String userpassword){
         RegistrationPage registrationPage = new RegistrationPage(driver);
         registrationPage.waitRgstrLoaded();

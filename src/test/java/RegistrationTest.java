@@ -1,8 +1,6 @@
-import apiPages.UserLoginBodyModel;
+import api.UserLoginBodyModel;
 import io.qameta.allure.Description;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
 import pages.RegistrationPage;
 import steps.RegistrationSteps;
 
@@ -12,21 +10,19 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertTrue;
 import static steps.ApiSteps.userLogin;
 
-@RunWith(Parameterized.class)
-public class RegistrationTest extends BaseTest{
-private final String browser;
 
-public RegistrationTest(String browser){
-    super(browser);
-    this.browser = browser;
+public class RegistrationTest extends BaseTest{
+public RegistrationTest(){
+    super(getBrowserFromEnv());
 }
-@Parameterized.Parameters(name = "Browser {0}")
-    public static Object[][] getBrowserTest(){
-    return new Object[][] {
-            {"chrome"},
-            {"yandex"}
-    };
-}
+
+    private static String getBrowserFromEnv() {
+        String browser = System.getenv("BROWSER");
+        if (browser == null || browser.isEmpty()) {
+            throw new IllegalArgumentException("Переменная окружения BROWSER не установлена");
+        }
+        return browser;
+    }
 @Test
     @Description("Успешная регистрация пользователя")
     public void successRegistrationTest(){

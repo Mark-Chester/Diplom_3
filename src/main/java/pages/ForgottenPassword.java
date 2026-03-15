@@ -22,18 +22,18 @@ public class ForgottenPassword {
     public ForgottenPassword(WebDriver driver){
         this.driver = driver;
     }
-@Step
+@Step("Поиск элемента с кнопкой Восстановить")
 public WebElement refindBttn() {
     return driver.findElement(refindBtn);
 }
     // Нажатие на кнопку Войти
-    @Step
+    @Step("Нажатие на кнопку Войти")
     public void loginButtonClick () {
         new WebDriverWait(driver, Duration.ofSeconds(20))
                 .until(ExpectedConditions.visibilityOfElementLocated(loginButton));
         driver.findElement(loginButton).click();
     }
-    @Step
+    @Step("Открытие страницы")
     public void openPage(){
         driver.get(FORGPASS_URL);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
